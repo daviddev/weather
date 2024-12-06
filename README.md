@@ -1,79 +1,116 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+Here’s the updated `README.md` to reflect your setup with the hardcoded `API_URL` and `API_ID` in `src/api/index.ts`:
 
-# Getting Started
+---
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+# Weather App 🌦️
 
-## Step 1: Start the Metro Server
+A cross-platform React Native app to fetch and display real-time weather data using an external weather API.
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+## Features
+- **Get Current Weather**: Displays current weather conditions.
+- **Location-Based Data**: Fetches weather data for the user's location.
+- **Search Functionality**: Search for weather data in other cities.
+- **Cross-Platform**: Works on both Android and iOS.
 
-To start Metro, run the following command from the _root_ of your React Native project:
+---
 
-```bash
-# using npm
-npm start
+## Prerequisites
 
-# OR using Yarn
-yarn start
-```
+1. **Node.js**: Ensure you have Node.js installed (recommended version: 16.x or later).
+2. **React Native CLI**: Install the React Native CLI for development.
+3. **Android Studio**: Required for Android development.
+4. **Xcode**: Required for iOS development (macOS only).
+5. **Weather API Key**: Obtain an API key from a weather data provider like [OpenWeatherMap](https://openweathermap.org/).
 
-## Step 2: Start your Application
+---
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+## Setup
 
-### For Android
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/your-repo/weather-app.git
+   cd weather-app
+   ```
 
-```bash
-# using npm
-npm run android
+2. **Install Dependencies**
+   ```bash
+   npm install
+   ```
 
-# OR using Yarn
-yarn android
-```
+3. **Set Up API Configuration**
+   - The API details are hardcoded in `src/api/index.ts`. Verify the following:
+     ```typescript
+     export const API_URL = 'https://api.openweathermap.org/data/2.5/';
+     export const API_ID = 'your_api_key_here'; // Replace with your actual API key
+     ```
+   - Update `API_ID` with your actual API key.
 
-### For iOS
+---
 
-```bash
-# using npm
-npm run ios
+## Run the App
 
-# OR using Yarn
-yarn ios
-```
+### iOS
+1. Install CocoaPods dependencies:
+   ```bash
+   cd ios
+   pod install
+   cd ..
+   ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+2. Start the Metro Bundler:
+   ```bash
+   npm start
+   ```
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+3. Run the app on an iOS simulator or connected device:
+   ```bash
+   npx react-native run-ios
+   ```
 
-## Step 3: Modifying your App
+### Android
+1. Start the Metro Bundler:
+   ```bash
+   npm start
+   ```
 
-Now that you have successfully run the app, let's modify it.
+2. Run the app on an Android emulator or connected device:
+   ```bash
+   npx react-native run-android
+   ```
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+---
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+## Scripts
 
-## Congratulations! :tada:
+- **Start Metro Bundler**: `npm start`
+- **Run on iOS**: `npx react-native run-ios`
+- **Run on Android**: `npx react-native run-android`
+- **Lint**: `npm run lint`
 
-You've successfully run and modified your React Native App. :partying_face:
+---
 
-### Now what?
+## Notes
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+1. **Android Emulator**: Ensure Android Studio's emulator is set up with the proper SDK version (API level 30+ recommended).
+2. **iOS Simulator**: Requires macOS with Xcode installed.
+3. **API Rate Limits**: Check your API provider for any rate limits or restrictions.
 
-# Troubleshooting
+---
 
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+## Troubleshooting
 
-# Learn More
+1. **Build Errors**:
+   - Run `npm install` and ensure dependencies are correctly installed.
+   - For iOS: Try `cd ios && pod install` again.
 
-To learn more about React Native, take a look at the following resources:
+2. **Metro Bundler Issues**:
+   - Clear the cache and restart:
+     ```bash
+     npm start --reset-cache
+     ```
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+3. **API Issues**:
+   - Ensure the `API_ID` is correctly configured in the `src/api/index.ts` file.
+   - Check for API rate limits or incorrect city names.
+
+---
