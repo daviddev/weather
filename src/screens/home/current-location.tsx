@@ -10,6 +10,7 @@ import {
     Text,
     Alert,
     Linking,
+    Platform,
     StyleSheet,
     ScrollView,
     ActivityIndicator
@@ -29,7 +30,13 @@ const CurrentLocation = (): React.JSX.Element => {
     }, []);
 
     const check = async () => {
-        const status = await request(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION);
+        let status;
+
+        if (Platform.OS === "ios") {
+            status = await Geolocation.requestAuthorization("whenInUse");
+        } else {
+            status = await request(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION);
+        }
 
         if (status === RESULTS.GRANTED) {
             detect();

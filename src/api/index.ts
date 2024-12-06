@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosInstance } from "axios";
 
-const API_ID = "eac9585d49ae64be4c892a088b136324";
+const API_ID = "caafbd7a5bd6bc39a38eece69a4672c3";
 const API_URL = "https://api.openweathermap.org";
 
 const instance: AxiosInstance = axios.create({ baseURL: API_URL });

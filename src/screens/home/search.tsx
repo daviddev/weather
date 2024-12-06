@@ -36,25 +36,29 @@ const Search = (): React.JSX.Element => {
         }
     }, [unit]);
 
-    const search = async (query: string) => {
-        await dispatch(setQuery(query));
-        await dispatch(setCity(null));
-        await dispatch(setCities([]));
-        await dispatch(setRecord(null));
+    const search = async (value: string) => {
+        if (value === query) {
+            return;
+        }
+
+        dispatch(setQuery(value));
+        dispatch(setCity(null));
+        dispatch(setCities([]));
+        dispatch(setRecord(null));
 
         if (timer) {
             clearTimeout(timer);
         }
 
         return (timer = setTimeout(async () => {
-            if (!query) {
+            if (!value) {
                 return;
             }
 
             setSearching(true);
 
             const params = {
-                q: query,
+                q: value,
                 limit: 10
             };
 
@@ -154,7 +158,11 @@ const Search = (): React.JSX.Element => {
                         )}
                         {!submitting && (
                             <>
-                                {!record && <Text>No details</Text>}
+                                {!record && (
+                                    <Text style={styles.noDetails}>
+                                        No details
+                                    </Text>
+                                )}
                                 {record && (
                                     <>
                                         <Text>Temperature</Text>
@@ -184,10 +192,7 @@ const Search = (): React.JSX.Element => {
                         <Card.Actions>
                             <Button
                                 onPress={() =>
-                                    navigation.navigate(
-                                        RouterEnum.DETAILS,
-                                        record
-                                    )
+                                    navigation.navigate(RouterEnum.DETAILS)
                                 }
                             >
                                 Details
@@ -221,6 +226,9 @@ const styles = StyleSheet.create({
     },
     listItem: {
         backgroundColor: "white"
+    },
+    noDetails: {
+        marginBottom: 10
     }
 });
 
